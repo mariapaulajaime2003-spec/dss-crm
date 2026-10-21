@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Decisiones inteligentes, clientes satisfechos · DSS y CRM</title>
+<style>
+:root{--bg:#f2f7fb;--card:#fff;--ink:#0b1f3a;--mut:#4a5d75;--navy:#0b1f3a;--blue:#2f80d1;--sky:#d6e9fa;--teal:#0fb5a6;--line:#d3e0ec;--ok:#0a8f5a;--bad:#c2410c;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#08131f;--card:#0f2236;--ink:#e8f1fa;--mut:#9fb6cc;--sky:#16324d;--line:#20405c;--blue:#5aa7ee;--teal:#2dd4c4;--ok:#34d399;--bad:#fb923c}}
+:root[data-theme="dark"]{--bg:#08131f;--card:#0f2236;--ink:#e8f1fa;--mut:#9fb6cc;--sky:#16324d;--line:#20405c;--blue:#5aa7ee;--teal:#2dd4c4;--ok:#34d399;--bad:#fb923c}
+*{box-sizing:border-box;margin:0}
+html{scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1,h2,h3{line-height:1.15;letter-spacing:-.01em}
+h2{font-size:clamp(28px,4.5vw,40px);margin-bottom:8px}
+h3{font-size:20px;margin:26px 0 10px}
+p{margin:0 0 12px;max-width:72ch}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;color:#000;padding:8px;z-index:99}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--navy);color:#fff}
+header .in{max-width:1080px;margin:0 auto;padding:10px 18px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.brand{font-weight:800;font-size:16px}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav button{background:none;border:0;color:#cfe3f6;padding:8px 12px;border-radius:8px;font:600 14px system-ui;cursor:pointer}
+nav button[aria-current="page"]{background:var(--teal);color:#04201d}
+main{max-width:1080px;margin:0 auto;padding:0 18px}
+.sec{display:none;padding:34px 0 60px}.sec.on{display:block;animation:f .35s}
+@keyframes f{from{opacity:0}to{opacity:1}}
+.hero{background:var(--navy);color:#fff;border-radius:22px;padding:42px 30px;margin-bottom:28px}
+.hero h1{font-size:clamp(34px,6vw,60px);font-weight:800}
+.hero .sub{color:#8fe3da;font-size:20px;margin:10px 0 0}
+.btn{background:var(--teal);color:#04201d;border:0;border-radius:99px;padding:13px 26px;font:700 16px system-ui;cursor:pointer}
+.btn.s{background:var(--sky);color:var(--navy);padding:9px 16px;font-size:15px;border-radius:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:14px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.card h3{margin:0 0 6px;font-size:18px}.card p{margin:0;color:var(--mut);font-size:15.5px}
+.card svg{width:44px;height:44px;margin-bottom:8px}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:16px 0}
+.flow div{flex:1 1 130px;background:var(--sky);border-radius:12px;padding:12px;text-align:center;font-weight:700;font-size:14.5px;position:relative}
+.flow div:not(:last-child)::after{content:"→";position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--teal);font-size:22px;z-index:1}
+@media(max-width:700px){.flow div:not(:last-child)::after{content:"↓";right:50%;top:auto;bottom:-22px;transform:translateX(50%)}.flow{gap:24px}}
+.note{border-left:5px solid var(--teal);background:var(--card);padding:14px 18px;border-radius:0 12px 12px 0;margin:16px 0}
+.warn{border-left-color:var(--bad)}
+ul{padding-left:22px;margin:0 0 12px}li{margin:4px 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:700px){.cols{grid-template-columns:1fr}}
+.tw{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:560px;background:var(--card);font-size:15px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--navy);color:#fff}
+.hd .c-dss,.hc .c-crm{display:none}
+.ill{font-size:13.5px;color:var(--mut)}
+.lab{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin:18px 0}
+.opts{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.opts button,.pick button{background:var(--bg);border:2px solid var(--line);color:var(--ink);border-radius:12px;padding:11px 14px;text-align:left;font:500 16px system-ui;cursor:pointer}
+.opts button:hover,.pick button:hover{border-color:var(--teal)}
+.pick{display:flex;gap:8px;flex-wrap:wrap}.pick button[aria-pressed="true"]{background:var(--teal);color:#04201d;border-color:var(--teal);font-weight:700}
+.opts .right{border-color:var(--ok)}.opts .wrong{border-color:var(--bad)}
+.fb{margin-top:10px;padding:12px 14px;border-radius:10px;background:var(--sky)}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:8px 0}
+summary{font-weight:700;cursor:pointer}
+details p,details ul{margin-top:8px}
+.bib li{margin-bottom:10px;padding-left:2em;text-indent:-2em;list-style:none}
+footer{text-align:center;color:var(--mut);font-size:14px;padding:24px 18px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header><div class="in"><span class="brand">Decisiones inteligentes, clientes satisfechos</span>
+<nav aria-label="Secciones"><button data-s="inicio">Inicio</button><button data-s="dss">DSS</button><button data-s="crm">CRM</button><button data-s="comparacion">Comparación</button><button data-s="laboratorio">Laboratorio</button><button data-s="conclusiones">Conclusiones</button></nav></div></header>
+<main id="main">
+
+<section class="sec" id="inicio" aria-labelledby="t1">
+<div class="hero"><h1 id="t1">Decisiones inteligentes, clientes satisfechos</h1>
+<p class="sub">Sistemas de Soporte a la Decisión (DSS) y CRM en la gestión empresarial</p>
+<p style="margin:18px 0 22px;color:#cfe3f6">Sistemas de Información Gerencial · Administración de Empresas</p>
+<button class="btn" data-go="dss">Comenzar el recorrido</button></div>
+<h2>Los datos como herramienta de gestión</h2>
+<p>Las organizaciones toman cada día decisiones sobre precios, inventarios, presupuestos y atención al cliente. Los sistemas de información gerencial convierten datos dispersos en información útil para que esas decisiones se apoyen en evidencia y no solo en la intuición (Laudon y Laudon, 2022).</p>
+<div class="flow" role="list" aria-label="Relación entre información y gestión"><div role="listitem">Información</div><div role="listitem">Análisis</div><div role="listitem">Decisión</div><div role="listitem">Gestión de clientes</div></div>
+<div class="grid">
+<div class="card"><svg viewBox="0 0 44 44" role="img" aria-label="Icono de gráfico de barras"><rect x="4" y="24" width="8" height="16" rx="2" fill="#2f80d1"/><rect x="18" y="14" width="8" height="26" rx="2" fill="#0fb5a6"/><rect x="32" y="4" width="8" height="36" rx="2" fill="#2f80d1"/></svg><h3>Eje 1: DSS</h3><p>Analizan datos y comparan alternativas para apoyar decisiones gerenciales.</p><p><button class="btn s" data-go="dss" style="margin-top:10px">Ver DSS</button></p></div>
+<div class="card"><svg viewBox="0 0 44 44" role="img" aria-label="Icono de clientes"><circle cx="15" cy="14" r="7" fill="#2f80d1"/><circle cx="31" cy="16" r="6" fill="#0fb5a6"/><path d="M3 38a12 12 0 0 1 24 0zM24 38a9 9 0 0 1 17 0z" fill="#2f80d1" opacity=".8"/></svg><h3>Eje 2: CRM</h3><p>Organizan la información de los clientes para atenderlos y fidelizarlos mejor.</p><p><button class="btn s" data-go="crm" style="margin-top:10px">Ver CRM</button></p></div></div>
+<h3>Objetivo general</h3>
+<p>Comprender, analizar y aplicar los conceptos de los DSS y los CRM, identificando su contribución a la toma de decisiones gerenciales, la gestión de la información y el fortalecimiento de las relaciones con los clientes.</p>
+<h3>Objetivos específicos</h3>
+<ul><li>Evaluar el uso de los DSS en las decisiones gerenciales.</li><li>Analizar el aporte de los CRM a la relación con los clientes.</li><li>Comparar ambos sistemas e identificar cómo se complementan.</li><li>Aplicar los conceptos en un caso empresarial ficticio mediante simuladores y un cuestionario.</li></ul>
+</section>
+
+<section class="sec" id="dss" aria-labelledby="t2">
+<h2 id="t2">Sistemas de Soporte a la Decisión (DSS)</h2>
+<p>Un DSS es un sistema de información interactivo que reúne datos, modelos analíticos y una interfaz sencilla para ayudar a los gerentes a resolver problemas poco estructurados o cambiantes (Keen y Scott Morton, 1978; Turban et al., 2011). Su propósito es mejorar la calidad de la decisión, no tomarla por la persona.</p>
+<div class="flow" role="list" aria-label="Proceso de apoyo a la decisión"><div role="listitem">Datos</div><div role="listitem">Análisis</div><div role="listitem">Evaluación de alternativas</div><div role="listitem">Decisión gerencial</div><div role="listitem">Seguimiento de resultados</div></div>
+<div class="note"><b>Idea clave:</b> un DSS apoya a quien decide, pero no garantiza que la decisión sea correcta ni sustituye el criterio gerencial.</div>
+<h3>Características y componentes</h3>
+<div class="grid">
+<div class="card"><h3>Base de datos</h3><p>Información interna (ventas, costos, inventarios) y externa (mercado, competencia).</p></div>
+<div class="card"><h3>Base de modelos</h3><p>Proyecciones, simulaciones y modelos de optimización o costo-beneficio.</p></div>
+<div class="card"><h3>Interfaz</h3><p>Tableros, informes y gráficos que el gerente puede consultar y modificar.</p></div>
+<div class="card"><h3>Usuario decisor</h3><p>Define el problema, interpreta resultados y asume la responsabilidad.</p></div></div>
+<h3>Tipos de análisis que puede apoyar</h3>
+<ul><li><b>Qué pasaría si:</b> cambiar un supuesto, como el precio, y observar el efecto.</li><li><b>Análisis de sensibilidad:</b> medir qué variables influyen más en el resultado.</li><li><b>Optimización:</b> asignar recursos limitados de la mejor forma posible.</li><li><b>Simulación:</b> probar escenarios antes de aplicarlos.</li></ul>
+<h3>Aplicaciones gerenciales</h3>
+<ul><li><b>Ventas:</b> proyectar la demanda y evaluar promociones.</li><li><b>Inventarios:</b> definir cuánto reponer y cuándo, evitando excesos y faltantes.</li><li><b>Presupuestos:</b> comparar escenarios de ingresos y gastos.</li><li><b>Costos:</b> identificar qué productos o procesos generan menor margen.</li><li><b>Asignación de recursos:</b> distribuir personal, dinero o espacio entre proyectos.</li></ul>
+<div class="cols"><div class="card"><h3>Beneficios</h3><ul><li>Decisiones más rápidas y fundamentadas.</li><li>Comparación ordenada de alternativas.</li><li>Mejor control y seguimiento de resultados.</li></ul></div>
+<div class="card"><h3>Limitaciones</h3><ul><li>Dependen de la calidad de los datos y de los supuestos del modelo.</li><li>Implementarlos exige inversión y capacitación.</li><li>No reemplazan la experiencia ni el juicio ético.</li></ul></div></div>
+<div class="note warn"><b>Riesgo:</b> si los datos están incompletos, desactualizados o mal registrados, el análisis puede parecer preciso y aun así llevar a una mala decisión.</div>
+<h3>Ejemplo práctico: comparar alternativas</h3>
+<p>Una tienda quiere aumentar sus ventas. El gerente califica cada alternativa de 1 a 5 (5 es lo más favorable) y pondera los criterios.</p>
+<div class="tw"><table><caption class="ill" style="text-align:left;padding:8px 12px">Ejemplo ilustrativo con calificaciones ficticias.</caption><thead><tr><th>Alternativa</th><th>Costo (40%)</th><th>Impacto en ventas (40%)</th><th>Riesgo (20%)</th><th>Puntaje</th></tr></thead>
+<tbody><tr><td>A. Descuento del 15%</td><td>2</td><td>4</td><td>3</td><td>3,0</td></tr><tr><td>B. Campaña digital segmentada</td><td>3</td><td>3</td><td>4</td><td><b>3,2</b></td></tr><tr><td>C. Ampliar inventario</td><td>1</td><td>3</td><td>2</td><td>2,0</td></tr></tbody></table></div>
+<p>El DSS sugiere la alternativa B, pero el gerente debe validar los supuestos y considerar factores que el modelo no captura.</p>
+</section>
+
+<section class="sec" id="crm" aria-labelledby="t3">
+<h2 id="t3">CRM y gestión de clientes</h2>
+<p>El CRM (Customer Relationship Management) es una estrategia apoyada en tecnología que centraliza la información de los clientes actuales y potenciales para gestionar mejor cada relación (Buttle y Maklan, 2019). Su propósito es conocer, atender y fidelizar al cliente a lo largo de todo su ciclo de vida.</p>
+<div class="flow" role="list" aria-label="Funcionamiento de un CRM"><div role="listitem">Registro del cliente</div><div role="listitem">Historial de interacciones</div><div role="listitem">Identificación de necesidades</div><div role="listitem">Atención y seguimiento</div><div role="listitem">Evaluación de satisfacción</div></div>
+<div class="note"><b>Idea clave:</b> un CRM no es una agenda de contactos. Su valor está en organizar y aprovechar la información para gestionar mejor las relaciones.</div>
+<h3>Información que administra</h3>
+<ul><li>Datos de contacto y perfil del cliente.</li><li>Compras, cotizaciones y preferencias.</li><li>Consultas, quejas, reclamos y solicitudes de servicio.</li><li>Seguimiento de prospectos y oportunidades de venta.</li><li>Resultados de encuestas de satisfacción.</li></ul>
+<h3>Aplicaciones</h3>
+<div class="grid">
+<div class="card"><h3>Ventas</h3><p>Seguimiento de prospectos, cotizaciones y cierres.</p></div>
+<div class="card"><h3>Mercadeo</h3><p>Segmentación de clientes y campañas dirigidas.</p></div>
+<div class="card"><h3>Servicio al cliente</h3><p>Registro y trazabilidad de solicitudes y reclamos.</p></div>
+<div class="card"><h3>Posventa</h3><p>Garantías, recompra y recomendaciones personalizadas.</p></div></div>
+<p><b>Personalización y fidelización:</b> con el historial a la mano, la empresa puede dirigirse al cliente por sus necesidades reales, anticipar problemas y reforzar su satisfacción y lealtad.</p>
+<div class="cols"><div class="card"><h3>Beneficios</h3><ul><li>Visión única de cada cliente.</li><li>Atención más rápida y coherente.</li><li>Mayor retención y ventas repetidas.</li></ul></div>
+<div class="card"><h3>Dificultades</h3><ul><li>Datos duplicados o desactualizados.</li><li>Resistencia del personal al cambio.</li><li>Costos de implementación y capacitación.</li></ul></div></div>
+<div class="note warn"><b>Datos personales:</b> la información debe ser veraz, estar actualizada y protegerse. En Colombia aplica la Ley Estatutaria 1581 de 2012 (Congreso de Colombia, 2012), que exige autorización y uso responsable de los datos.</div>
+</section>
+
+<section class="sec" id="comparacion" aria-labelledby="t4">
+<h2 id="t4">Comparación entre DSS y CRM</h2>
+<p>Elige qué sistema quieres destacar:</p>
+<div class="pick" id="cmpPick" role="group" aria-label="Filtro de comparación"><button aria-pressed="true" data-v="">Ambos</button><button aria-pressed="false" data-v="hd">Solo DSS</button><button aria-pressed="false" data-v="hc">Solo CRM</button></div>
+<div class="tw"><table id="cmp"><thead><tr><th>Criterio</th><th class="c-dss">DSS</th><th class="c-crm">CRM</th></tr></thead><tbody>
+<tr><td>Objetivo principal</td><td class="c-dss">Apoyar decisiones gerenciales</td><td class="c-crm">Gestionar y fortalecer la relación con los clientes</td></tr>
+<tr><td>Información utilizada</td><td class="c-dss">Datos internos y externos, históricos y proyecciones</td><td class="c-crm">Datos de contacto, compras, interacciones y quejas</td></tr>
+<tr><td>Usuarios principales</td><td class="c-dss">Gerentes y analistas</td><td class="c-crm">Ventas, mercadeo y servicio al cliente</td></tr>
+<tr><td>Funciones</td><td class="c-dss">Modelar, simular y comparar alternativas</td><td class="c-crm">Registrar, hacer seguimiento y segmentar</td></tr>
+<tr><td>Aplicaciones</td><td class="c-dss">Presupuestos, inventarios, costos, asignación de recursos</td><td class="c-crm">Campañas, atención, posventa, fidelización</td></tr>
+<tr><td>Beneficios</td><td class="c-dss">Decisiones mejor fundamentadas</td><td class="c-crm">Clientes más satisfechos y leales</td></tr>
+<tr><td>Limitaciones</td><td class="c-dss">Calidad de datos y supuestos del modelo</td><td class="c-crm">Datos incompletos, adopción y protección de datos</td></tr>
+<tr><td>Resultados esperados</td><td class="c-dss">Mejor decisión y uso de recursos</td><td class="c-crm">Retención, ventas repetidas y mejor servicio</td></tr></tbody></table></div>
+<h3>Cómo se complementan</h3>
+<p>El DSS responde “¿qué conviene decidir?” y el CRM responde “¿qué necesitan nuestros clientes?”. Si ambos sistemas pueden compartir datos, el CRM alimenta al DSS con información real de compras y quejas, y el DSS convierte esa información en decisiones.</p>
+<div class="note"><b>Ejemplo:</b> el CRM muestra que muchas quejas se concentran en entregas tardías de un producto. El DSS usa esos datos para comparar alternativas: cambiar de transportador, aumentar el inventario local o ajustar los plazos prometidos, estimando costo e impacto de cada una.</div>
+</section>
+
+<section class="sec" id="laboratorio" aria-labelledby="t5">
+<h2 id="t5">Caso empresarial y laboratorio</h2>
+<p class="ill">Caso ficticio con fines académicos. NovaMarket no existe y las cifras son ejemplos ilustrativos, no resultados reales.</p>
+<details open><summary>1. La empresa y su problema</summary><p>NovaMarket comercializa productos tecnológicos en tienda y en línea. En los últimos meses sus ventas bajan, los clientes se quejan por demoras en la atención y la información está dispersa en hojas de cálculo y correos.</p></details>
+<details><summary>2. Información que necesita la gerencia</summary><ul><li>Ventas por producto, canal y mes.</li><li>Quejas por tipo y tiempo de respuesta.</li><li>Clientes que dejaron de comprar.</li><li>Nivel de inventario y costos.</li></ul></details>
+<details><summary>3. Aplicación del CRM</summary><p>NovaMarket registra en un CRM cada compra, queja e interacción, asigna responsables y fija fechas de seguimiento. Así obtiene un historial confiable por cliente.</p></details>
+<details><summary>4. Aplicación del DSS</summary><p>Con los datos del CRM y de ventas, el DSS identifica en qué productos y canales cae la demanda y compara alternativas: reforzar la atención, lanzar una campaña de recompra o ajustar el inventario.</p></details>
+<details><summary>5. Estrategia seleccionada</summary><p>Se prioriza reforzar la atención posventa con tiempos de respuesta definidos y una campaña dirigida a clientes inactivos. Se justifica porque atiende la causa de las quejas, tiene costo moderado y se puede medir.</p></details>
+<details><summary>6. Indicadores de resultado</summary><ul><li>Tiempo promedio de respuesta.</li><li>Quejas resueltas en el plazo definido.</li><li>Tasa de recompra y ventas mensuales.</li><li>Satisfacción del cliente (encuesta).</li></ul></details>
+<details><summary>7. Conclusiones del caso</summary><p>El CRM aportó datos organizados y el DSS permitió compararlos para decidir. Ninguno funciona bien sin datos confiables ni sin el criterio del gerente para ejecutar y evaluar.</p></details>
+
+<div class="lab"><h3 style="margin-top:0">Actividad A. Simulador de decisión gerencial</h3>
+<p>Selecciona el problema que enfrenta NovaMarket:</p>
+<div class="pick" id="aPick" role="group" aria-label="Problemas"></div><div id="aOut" aria-live="polite"></div></div>
+
+<div class="lab"><h3 style="margin-top:0">Actividad B. Simulador de CRM</h3>
+<p><b>Situación:</b> Laura compró un portátil hace 10 días y presenta una falla. Ya escribió dos veces y no recibió respuesta. Hoy llama molesta. ¿Qué haces?</p>
+<div class="opts" id="bOpts"></div><div id="bOut" aria-live="polite"></div></div>
+
+<div class="lab"><h3 style="margin-top:0">Actividad C. Cuestionario</h3>
+<div id="qBox"></div></div>
+</section>
+
+<section class="sec" id="conclusiones" aria-labelledby="t6">
+<h2 id="t6">Conclusiones, bibliografía y créditos</h2>
+<h3>Conclusiones</h3>
+<ul><li><b>DSS:</b> mejoran las decisiones al organizar datos, modelos y alternativas, siempre bajo la responsabilidad del gerente.</li>
+<li><b>CRM:</b> fortalecen la relación con los clientes al registrar su historial y permitir una atención oportuna y personalizada.</li>
+<li><b>Complemento:</b> compartir datos entre ambos sistemas permite pasar de conocer al cliente a decidir mejor para él.</li>
+<li><b>Responsabilidad:</b> la calidad de los datos, el criterio humano y el respeto por la privacidad determinan el valor de cualquier sistema.</li></ul>
+<h3>Bibliografía (APA, 7.ª edición)</h3>
+<ul class="bib">
+<li>Buttle, F., y Maklan, S. (2019). <i>Customer relationship management: Concepts and technologies</i> (4.ª ed.). Routledge.</li>
+<li>Congreso de Colombia. (2012). <i>Ley Estatutaria 1581 de 2012, por la cual se dictan disposiciones generales para la protección de datos personales</i>. Diario Oficial n.º 48.587.</li>
+<li>Keen, P. G. W., y Scott Morton, M. S. (1978). <i>Decision support systems: An organizational perspective</i>. Addison-Wesley.</li>
+<li>Laudon, K. C., y Laudon, J. P. (2022). <i>Management information systems: Managing the digital firm</i> (17.ª ed.). Pearson.</li>
+<li>Turban, E., Sharda, R., y Delen, D. (2011). <i>Decision support and business intelligence systems</i> (9.ª ed.). Prentice Hall.</li></ul>
+<p class="ill">Se recomienda verificar edición y datos en la biblioteca institucional antes de entregar el trabajo.</p>
+<h3>Créditos y propósito</h3>
+<p>Los íconos y diagramas son gráficos SVG y CSS creados para este proyecto; no se usan imágenes externas. NovaMarket y sus cifras son ficticios. Este recurso tiene propósito académico para la asignatura Sistemas de Información Gerencial. Se elaboró con apoyo de inteligencia artificial, y su contenido debe ser revisado y validado por el estudiante y el docente.</p>
+</section>
+</main>
+<footer>Recurso educativo · Sistemas de Información Gerencial · Sin registro ni recolección de datos personales</footer>
+
+<script>
+var S=["inicio","dss","crm","comparacion","laboratorio","conclusiones"];
+function show(id){if(S.indexOf(id)<0)id="inicio";
+S.forEach(function(s){document.getElementById(s).classList.toggle("on",s===id)});
+document.querySelectorAll("nav button").forEach(function(b){if(b.dataset.s===id)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
+try{history.replaceState(null,"","#"+id)}catch(e){}window.scrollTo(0,0)}
+document.addEventListener("click",function(e){var t=e.target;
+if(t.dataset.s)show(t.dataset.s);if(t.dataset.go)show(t.dataset.go)});
+window.addEventListener("hashchange",function(){show(location.hash.slice(1))});
+show(location.hash.slice(1));
+
+document.getElementById("cmpPick").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
+this.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b)});
+var t=document.getElementById("cmp");t.className=b.dataset.v})
+
+var A={"Disminución de las ventas":{a:"Las ventas bajan, pero la causa puede ser precio, atención, competencia o disponibilidad. Hay que separar el síntoma de la causa.",d:["Ventas por producto, canal y mes","Clientes que dejaron de comprar (CRM)","Precios de la competencia"],alt:["Campaña de recompra a clientes inactivos","Ajustar precios en productos sensibles","Reforzar la atención posventa"],ind:["Ventas mensuales","Tasa de recompra","Margen por producto"]},
+"Aumento de las quejas":{a:"Más quejas indican fallas en el servicio o en el producto. Conviene clasificarlas para encontrar el origen.",d:["Quejas por tipo y responsable (CRM)","Tiempo de respuesta","Productos o proveedores con más reclamos"],alt:["Definir tiempos máximos de respuesta","Capacitar al equipo de servicio","Revisar proveedores y logística"],ind:["Quejas por cada 100 ventas","Casos resueltos a tiempo","Satisfacción del cliente"]},
+"Exceso de inventario":{a:"El inventario inmovilizado ocupa capital y espacio. Hay que saber qué rota poco y por qué.",d:["Rotación por producto","Costo de almacenamiento","Pronóstico de demanda"],alt:["Liquidar con promociones","Reducir pedidos a proveedores","Agrupar productos en paquetes"],ind:["Rotación de inventario","Días de inventario","Costo de almacenamiento"]}};
+var aP=document.getElementById("aPick"),aO=document.getElementById("aOut");
+Object.keys(A).forEach(function(k){var b=document.createElement("button");b.textContent=k;b.setAttribute("aria-pressed","false");aP.appendChild(b)});
+aP.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
+aP.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b)});
+var r=A[b.textContent],l=function(a){return"<ul>"+a.map(function(i){return"<li>"+i+"</li>"}).join("")+"</ul>"};
+aO.innerHTML='<div class="fb"><p><b>Análisis:</b> '+r.a+'</p><p><b>Datos a consultar:</b></p>'+l(r.d)+'<p><b>Alternativas:</b></p>'+l(r.alt)+'<p><b>Indicadores de evaluación:</b></p>'+l(r.ind)+'<p class="ill">Elegir una alternativa exige comparar costo, impacto y riesgo, y validar con datos reales.</p></div>'});
+
+var B=[["Pedirle que repita todo desde el inicio y registrar la llamada después.","Mejorable. Hacerla repetir su caso genera frustración; el historial del CRM ya contiene la información.",0],
+["Consultar el historial, reconocer los dos contactos sin respuesta, ofrecer una solución con fecha y registrar el caso con seguimiento.","Adecuada. Usa el historial, demuestra empatía y deja trazabilidad para evaluar la satisfacción después.",1],
+["Ofrecerle un descuento para que no reclame.","Mejorable. No resuelve la falla ni identifica la necesidad; el descuento no sustituye la solución.",0],
+["Transferirla a otra área sin registrar nada.","Mejorable. Sin registro se pierde la trazabilidad y el cliente debe explicar de nuevo su problema.",0]];
+var bO=document.getElementById("bOpts"),bR=document.getElementById("bOut");
+B.forEach(function(o,i){var b=document.createElement("button");b.textContent=o[0];b.onclick=function(){
+bO.querySelectorAll("button").forEach(function(x,j){x.disabled=true;if(B[j][2])x.classList.add("right");else if(j===i)x.classList.add("wrong")});
+bR.innerHTML='<div class="fb"><b>'+(o[2]?"Buena decisión. ":"Piénsalo de nuevo. ")+'</b>'+o[1]+' <button class="btn s" id="bRe">Reintentar</button></div>';
+document.getElementById("bRe").onclick=function(){bO.querySelectorAll("button").forEach(function(x){x.disabled=false;x.className=""});bR.innerHTML=""}};bO.appendChild(b)});
+
+var Q=[["¿Cuál es el propósito principal de un DSS?",["Almacenar contactos de clientes","Apoyar la toma de decisiones gerenciales","Reemplazar al gerente","Automatizar la facturación"],1,"Un DSS apoya al decisor con datos y modelos; no lo reemplaza."],
+["¿Qué componente de un DSS contiene proyecciones y simulaciones?",["Base de modelos","Base de datos","Interfaz","Red de proveedores"],0,"La base de modelos reúne los métodos analíticos del sistema."],
+["¿Qué riesgo aparece al usar datos incompletos en un DSS?",["Ninguno, el sistema los corrige","Decisiones equivocadas que parecen precisas","Menor costo","Más clientes"],1,"El resultado depende de la calidad de los datos de entrada."],
+["Un CRM sirve principalmente para…",["Guardar contactos únicamente","Gestionar y aprovechar la información de los clientes","Calcular presupuestos","Controlar la nómina"],1,"El valor del CRM está en usar la información para mejorar la relación."],
+["¿Cuál es la ventaja de consultar el historial del cliente antes de atenderlo?",["Evitar registrar el caso","Personalizar la atención y no repetir preguntas","Cobrar más","Cerrar la llamada más rápido"],1,"El historial permite una atención coherente y personalizada."],
+["¿Cómo se complementan el CRM y el DSS?",["El CRM aporta datos de clientes que el DSS analiza","Son lo mismo","El DSS reemplaza al CRM","No pueden compartir datos"],0,"Si comparten datos, el DSS puede analizar la información que organiza el CRM."],
+["¿Qué norma colombiana regula la protección de datos personales?",["Ley 1581 de 2012","Ley 100 de 1993","Ley 80 de 1993","Decreto 2420 de 2015"],0,"La Ley Estatutaria 1581 de 2012 establece el régimen general de protección de datos personales."]];
+var qi=0,sc=0,qB=document.getElementById("qBox");
+function rq(){if(qi>=Q.length){var p=Math.round(sc/Q.length*100);qB.innerHTML='<p><b>Puntuación: '+sc+' de '+Q.length+' ('+p+'%).</b> '+(p>=70?"Buen dominio de los conceptos.":"Repasa las secciones de DSS y CRM e inténtalo de nuevo.")+'</p><button class="btn s" id="qRe">Reiniciar</button>';
+document.getElementById("qRe").onclick=function(){qi=0;sc=0;rq()};return}
+var q=Q[qi];qB.innerHTML='<p class="ill">Pregunta '+(qi+1)+' de '+Q.length+'</p><p><b>'+q[0]+'</b></p><div class="opts" id="qo"></div><div id="qf" aria-live="polite"></div>';
+var o=document.getElementById("qo");q[1].forEach(function(t,i){var b=document.createElement("button");b.textContent=t;b.onclick=function(){
+o.querySelectorAll("button").forEach(function(x,j){x.disabled=true;if(j===q[2])x.classList.add("right");else if(j===i)x.classList.add("wrong")});
+if(i===q[2])sc++;
+document.getElementById("qf").innerHTML='<div class="fb"><b>'+(i===q[2]?"Correcto. ":"Incorrecto. ")+'</b>'+q[3]+'</div><p style="margin-top:10px"><button class="btn s" id="qn">'+(qi+1<Q.length?"Siguiente":"Ver resultado")+'</button></p>';
+document.getElementById("qn").onclick=function(){qi++;rq()}};o.appendChild(b)})}
+rq();
+</script>
+</body>
+</html>
